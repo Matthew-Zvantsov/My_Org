@@ -1,0 +1,104 @@
+<template>
+    <lightning-card>
+
+        <template if:false={recordId}>
+    <p class="slds-p-horizontal_small">
+        <lightning-input  type="search" class="slds-m-bottom_small" label="Search Account Name" onchange={searchAccountAction} value={accountName}></lightning-input>
+        </p>
+
+    <lightning-accordion allow-multiple-sections-open={multiple}>
+        <template if:true={accountsThisPage}>
+            <template for:each={accountsThisPage} for:item="acc">
+                <lightning-accordion-section name={acc.Name} label={acc.Support__c}  key={acc.Id}>
+                    <lightning-datatable key-field="Id" data={acc.Opportunities} columns={columnsForAcc} onrowaction={handleRowAction}>></lightning-datatable>
+                </lightning-accordion-section>
+            </template>
+        </template>
+    </lightning-accordion>
+
+    <div class="customPagination">
+        <template for:each={paginationRange} for:item="pageNumber">
+            <a onclick={handlePaginationClick} key={pageNumber} data-target-number={pageNumber}>{pageNumber}                  </a>
+        </template>
+    </div>
+
+
+
+    <template if:true={isModalOpen}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close"
+                            alternative-text="close"
+                            variant="inverse"
+                            size="small" ></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Product details</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <!-- <template for:each={currentOpp} for:item="product">
+                        <p key={product.Id} style="display:inline">
+                            <b><i>Product Name:</i></b> {product.Product2.Name}     <b><i>Quantity:</i></b> {product.Quantity}    <b><i>Unit Price:</i></b> {product.UnitPrice}      <b><i>Total Price:</i></b>  {product.TotalPrice}<br>
+                        </p>
+                    </template> -->
+                    <lightning-datatable
+                        key-field="id"
+                        data={currentOpp}
+                        columns={columnsForProduct}>
+                    </lightning-datatable>
+                </div>
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick={closeModal} title="Cancel">Cancel</button>
+                    <button class="slds-button slds-button_brand" onclick={submitDetails} title="OK">OK</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>
+
+<template if:true={recordId}>
+    <lightning-accordion allow-multiple-sections-open={multiple}>
+        <template if:true={acc.data}>
+                <lightning-accordion-section name={acc.data.Name} label={acc.data.Support__c}  key={acc.data.Id}>
+                    <lightning-datatable key-field="Id" data={acc.data.Opportunities} columns={columnsForAcc} onrowaction={handleRowAction}></lightning-datatable>
+                </lightning-accordion-section>
+        </template>
+    </lightning-accordion>
+
+    <template if:true={isModalOpen}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close"
+                            alternative-text="close"
+                            variant="inverse"
+                            size="small" ></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 class="slds-text-heading_medium slds-hyphenate">Product details</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium">
+                    <template for:each={currentOpp} for:item="product">
+                        <p key={product.Id} style="display:inline">
+                            <b><i>Product Name:</i></b> {product.Product2.Name}     <b><i>Quantity:</i></b> {product.Quantity}    <b><i>Unit Price:</i></b> {product.UnitPrice}      <b><i>Total Price:</i></b>  {product.TotalPrice}<br>
+                        </p>
+                    </template>
+                </div>
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick={closeModal} title="Cancel">Cancel</button>
+                    <button class="slds-button slds-button_brand" onclick={submitDetails} title="OK">OK</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+
+</template>
+
+</lightning-card>
+</template>

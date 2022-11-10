@@ -1,0 +1,10 @@
+.slds-modal__container{ 
+    padding: 200px 0;
+  }
+.slds-input{
+    width: 0px;
+}
+.container {
+  position: relative;
+  width: 500px;
+}

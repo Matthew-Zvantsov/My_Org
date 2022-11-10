@@ -1,0 +1,24 @@
+<template>
+        <lightning-card  title="Happy Birthday">
+            <div class="slds-m-bottom_small">
+                <lightning-input type="text"
+                   value={CRONstring}
+                   label="CRON String"
+                   onchange={currentCRON}
+                   disabled={disabled}
+                   ></lightning-input>
+             </div>
+            <lightning-button 
+                label="Run Once"
+                onclick={handleRunOnce}
+                variant="brand"
+                class="slds-m-left_x-small">
+            </lightning-button>
+            <lightning-button 
+                label={ScheduleBatchLabel}
+                onclick={handleSchedule}
+                variant={variant}
+                class="slds-m-left_x-small">
+            </lightning-button>
+        </lightning-card>
+</template>

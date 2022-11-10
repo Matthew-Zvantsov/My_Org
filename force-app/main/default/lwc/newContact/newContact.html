@@ -1,0 +1,66 @@
+<template>
+    <lightning-card>
+        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-2">
+            <div class="slds-m-top_medium slds-m-bottom_x-large">
+                <h2 class="slds-text-heading_medium slds-m-bottom_medium">
+                    First Name
+                </h2>
+                <div class="slds-p-around_medium lgc-bg">
+                    <lightning-input type="text" onchange={handleInputFirst}></lightning-input>
+                </div>
+            </div>
+            <div class="slds-m-top_medium slds-m-bottom_x-large">
+                    <h2 class="slds-text-heading_medium slds-m-bottom_medium">
+                        Last Name
+                    </h2>
+                    <div class="slds-p-around_medium lgc-bg">
+                        <lightning-input type="text" onchange={handleInputLast}></lightning-input>
+                    </div>
+                </div>
+            <div class="slds-m-top_medium slds-m-bottom_x-large">
+                <h2 class="slds-text-heading_medium slds-m-bottom_medium">
+                    Email
+                </h2>
+                <div class="slds-p-around_medium lgc-bg">
+                    <lightning-input type="text" onchange={handleInputEmail}></lightning-input>
+                </div>
+            </div>
+            <div class="slds-m-top_medium slds-m-bottom_x-large">
+                <h2 class="slds-text-heading_medium slds-m-bottom_medium">
+                    Phone Number
+                </h2>
+                <div class="slds-p-around_medium lgc-bg">
+                    <lightning-input type="text" value={number} onchange={handleInputNumber}></lightning-input>
+                </div>
+            </div>
+                <div class="slds-m-top_medium slds-m-bottom_x-large">
+                    <h2 class="slds-text-heading_medium slds-m-bottom_medium">
+                        Message
+                    </h2>
+                    <div class="slds-p-around_medium lgc-bg">
+                        <lightning-input type="text" onchange={handleInputMessage}></lightning-input>
+                    </div>
+                </div>
+        </div>
+        <footer class="slds-modal__footer">
+            <div class="slds-align_absolute-center">
+                <button class="slds-button slds-button_brand" onclick={checkCon} title="OK">CREATE CONTACT</button>
+            </div>
+        </footer>
+    </lightning-card>
+
+    <template if:true={isModalOpen}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">{modalText}</h2>
+                </header>
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick={closeModal} title="Cancel">OK</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+</template>

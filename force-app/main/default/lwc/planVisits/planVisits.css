@@ -1,0 +1,28 @@
+.date_input_field
+{
+    width: 150px;
+    padding: 0 20px;
+}
+.input_content_box
+{
+    display: flex;
+    align-items: center;
+    height: 200px;
+}
+.slds-form-element__label
+{
+    display: none;
+}
+.input_content_box_left
+{
+    align-items: center;
+    display: flex;
+    position:relative;
+    left:300px;
+}
+
+.picklist_input_field
+{
+    width: 300px;
+    padding: 0 20px;
+}
